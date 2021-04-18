@@ -102,10 +102,22 @@ public class DoublyLinkedListTest
         dll.add(dll.new Node(2));
         assertEquals(2, dll.getSize());
         dll.remove(n1);
-        ArrayList<Integer> res = doublyLinkedListAsArray(dll);
         assertEquals(1, dll.getSize());
+        ArrayList<Integer> res = doublyLinkedListAsArray(dll);
         assertArrayEquals(new Integer [] {2}, res.toArray());
     }
 
-
+    @Test
+    public void backRemove()
+    {
+        DoublyLinkedList<Integer> dll = new DoublyLinkedList<Integer>();
+        dll.add(dll.new Node(1));
+        DoublyLinkedList<Integer>.Node n2 = dll.new Node(2);
+        dll.add(n2);
+        assertEquals(2, dll.getSize());
+        dll.remove(n2);
+        assertEquals(1, dll.getSize());
+        ArrayList<Integer> res = doublyLinkedListAsArray(dll);
+        assertArrayEquals(new Integer [] {1}, res.toArray());
+    }
 }
