@@ -44,19 +44,19 @@ public class DoublyLinkedList<E>
     Node head, tail = null;
     int size = 0;
 
-    Node getHead() {
+    public Node getHead() {
         return this.head;
     }
 
-    Node getTail() {
+    public Node getTail() {
         return this.tail;
     }
 
-    int getSize() {
+    public int getSize() {
         return size;
     }
 
-    void add(Node node) {
+    public void add(Node node) {
         node.next = this.head;
         if (this.head != null) this.head.prev = node;
         if (this.tail == null) this.tail = node;
@@ -64,7 +64,7 @@ public class DoublyLinkedList<E>
         this.size++;
     }
 
-    Node pop() {
+    public Node pop() {
         Node res = this.tail;
         if (this.tail != null) {
             this.tail = this.tail.prev;
@@ -79,7 +79,7 @@ public class DoublyLinkedList<E>
         return res;
     }
 
-    void pop(int n) {
+    public void pop(int n) {
         while (n-- != 0 && this.tail != null) {
             this.tail = this.tail.prev;
             this.size--;
@@ -91,7 +91,7 @@ public class DoublyLinkedList<E>
         }
     }
 
-    void remove (Node node) {
+    public void remove (Node node) {
         if (this.head == node) {
             this.head = node.next;
         }
@@ -102,7 +102,7 @@ public class DoublyLinkedList<E>
         this.size--;
     }
 
-    void touch (Node node) {
+    public void touch (Node node) {
         this.remove(node);
         this.add(node);
     }
