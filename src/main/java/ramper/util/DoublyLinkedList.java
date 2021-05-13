@@ -3,12 +3,13 @@ package ramper.util;
 /**
  * A doubly linked list implementation that exposes delete and add in O(1).
  * Note that this implementation is not synchronized.
+ *
  */
 public class DoublyLinkedList<E>
 {
-    public class Node {
+    public static class Node<E> {
         E item;
-        Node next, prev = null;
+        Node<E> next, prev = null;
 
         public Node() {
             this.item = null;
@@ -18,11 +19,15 @@ public class DoublyLinkedList<E>
             this.item = item;
         }
 
-        E getItem() {
+        public E getItem() {
             return this.item;
         }
 
-        protected void addBefore(Node next) {
+        public void setItem(E item) {
+            this.item = item;
+        }
+
+        protected void addBefore(Node<E> next) {
             if (next.prev != null) {
                 next.prev.next = this;
             }
@@ -41,14 +46,14 @@ public class DoublyLinkedList<E>
         }
     };
 
-    Node head, tail = null;
+    Node<E> head, tail = null;
     int size = 0;
 
-    public Node getHead() {
+    public Node<E> getHead() {
         return this.head;
     }
 
-    public Node getTail() {
+    public Node<E> getTail() {
         return this.tail;
     }
 
@@ -56,7 +61,7 @@ public class DoublyLinkedList<E>
         return size;
     }
 
-    public void add(Node node) {
+    public void add(Node<E> node) {
         node.next = this.head;
         if (this.head != null) this.head.prev = node;
         if (this.tail == null) this.tail = node;
@@ -64,8 +69,8 @@ public class DoublyLinkedList<E>
         this.size++;
     }
 
-    public Node pop() {
-        Node res = this.tail;
+    public Node<E> pop() {
+        Node<E> res = this.tail;
         if (this.tail != null) {
             this.tail = this.tail.prev;
             // only one item in the list
@@ -91,7 +96,7 @@ public class DoublyLinkedList<E>
         }
     }
 
-    public void remove (Node node) {
+    public void remove (Node<E> node) {
         if (this.head == node) {
             this.head = node.next;
         }
@@ -102,7 +107,7 @@ public class DoublyLinkedList<E>
         this.size--;
     }
 
-    public void touch (Node node) {
+    public void touch (Node<E> node) {
         this.remove(node);
         this.add(node);
     }
